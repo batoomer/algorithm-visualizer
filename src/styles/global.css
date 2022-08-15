@@ -1,0 +1,39 @@
+*,
+*::after,
+*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-family: sans-serif;
+    font-size: 18px;
+    --black: #121212;
+    --white-main: rgb(255, 255, 255, 87%);
+}
+
+
+/* START FOOTER STYLE */
+footer {
+    background-color: var(--black);
+    color: var(--white-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+footer > p {
+    text-align: center;
+    margin: 0 auto;
+}
+
+footer > p > a > img {
+    width: 1.5rem;
+    height: auto;
+    vertical-align: text-bottom;
+    margin-left: 0.5rem;
+}
+
+/* END FOOTER STYLE */
