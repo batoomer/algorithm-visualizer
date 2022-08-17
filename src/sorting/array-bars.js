@@ -1,6 +1,7 @@
 import bubbleSort from "./algorithms/bubble-sort";
 import insertionSort from "./algorithms/insertion-sort";
 import selectionSort from "./algorithms/selection-sort";
+import quickSort from "./algorithms/quick-sort";
 
 class ArrayBars {
     #arr;
@@ -14,7 +15,7 @@ class ArrayBars {
     #render(arr){
         this.#array = document.createElement('div');
         this.#array.classList.add('array-bars');
-        //this.#array.style.gap = `${(100)/(10*arr.length +99)}%`
+        this.#array.style.gap = `${(100)/(5*arr.length +99)}%`
         
         for (let i=0; i<arr.length; i++){
             const bar = document.createElement('div');
@@ -77,7 +78,7 @@ class ArrayBars {
                 await bubbleSort(this.#arr, this.#swap.bind(this), delay);
                 break;
             case 'quick-sort':
-                await quickSort(this.#arr, left, right, this.#swap, delay);
+                await quickSort(this.#arr, 0, this.#arr.length -1, this.#swap.bind(this), this.#paintBar.bind(this), delay);
                 break;
         };
     };

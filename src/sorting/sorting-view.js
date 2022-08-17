@@ -17,7 +17,7 @@ class SortingView{
     #view;
     #arraySize = 100;
     #sortingAlgorithm = 'selection-sort';
-    #delay = 100;
+    #delay = 10;
     #array;
     #arrayBars;
 
@@ -142,8 +142,10 @@ class SortingView{
 
         await this.#arrayBars.sort(this.#sortingAlgorithm, this.#delay);
 
-
-
+        arrayNewButton.disabled = false;
+        arraySizeInput.disabled = false;
+        arraySortAlgorithm.disabled = false;
+        arraySortDelay.disabled = false;
     };
 
     #addViewListeners(){
