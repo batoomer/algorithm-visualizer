@@ -9,10 +9,25 @@
 :root{
     font-family: sans-serif;
     font-size: 18px;
-    --black: #121212;
-    --white-main: rgb(255, 255, 255, 87%);
+
+    --black: rgb(28, 28, 28);
+    --white: rgb(255, 255, 255, 87%);
+    --white-sec: rgb(255, 255, 255, 67%);
+    --white-disable: rgb(255, 255, 255, 47%);
+    
+    --blue: #0061C3;;
+    --blue-sec: #007CF8;
+    --blue-dark: #004d9b;
+   
+    
 }
 
+body{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
 
 /* START FOOTER STYLE */
 footer {

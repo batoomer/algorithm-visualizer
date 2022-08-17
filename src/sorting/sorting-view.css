@@ -1,0 +1,91 @@
+.sorting-view{
+    flex: 1;
+    padding: 1rem;
+    
+    background-color: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sorting-view > h2 {
+    font-size: clamp(1.25rem, calc(0.5rem + 2vw), 3rem);
+    text-align: center;
+    text-shadow: 0 0 0.1rem var(--white-sec);
+}
+
+.array-bars{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    background-color: var(--black);
+    padding: 2rem;
+    border-radius: 4rem;
+    box-shadow: 0 0 0.5rem var(--white-sec);
+    min-height: 60%;
+    min-width: 60%;
+}
+
+.sorting-view--controller{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.sorting-view--controller  button,
+.sorting-view--controller select {
+    align-self: center;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 0.025rem solid var(--white-sec);
+}
+
+.sorting-view--controller  button:hover{
+    background-color: var(--blue-sec);
+    color: var(--white-sec);
+    transition: 0.3s ease-in-out;
+}
+
+.sorting-view--controller  button:disabled{
+    background-color: var(--blue-dark);
+    color: var(--white-disable);
+    border-color: var(--white-disable);
+}
+
+.sorting-view--controller svg {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.sorting-view--controller > div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap:0.5rem;
+    white-space: nowrap;
+}
+
+.sorting-view--settings-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:0.25rem;
+}
+
+.sorting-view--settings-info p{
+    border-bottom: 0.125rem dashed var(--white-sec);
+    padding: 0.25rem 0;
+}
+
+.sorting-view--settings-info small {
+    color: var(--white-sec);
+}
