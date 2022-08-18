@@ -70,8 +70,6 @@ class SortingView{
                     <option value="bubble-sort">Bubble Sort</option>
                     <option value="merge-sort">Merge Sort</option>
                     <option value="quick-sort">Quick Sort</option>
-                    <option value="bucket-sort">Bucket Sort</option>
-                    <option value="heap-sort">Heap Sort</option>
                 </select>
             </div>
 

@@ -29,10 +29,10 @@ class ArrayBars {
         this.#array = document.createElement('div');
         this.#array.classList.add('array-bars');
         //We have arrLen( array.length) Bars and arrLen-1 (array.length -1) gaps.
-        //We want arrLen*barWidth + (arrLen-1)gapWidth = 100% width.
+        //We want arrLen*barWidth + (arrLen-1)gapWidth = 95% width.
         //We choose to make the bars five time bigger than the gaps: barrWidth = 5*gapWidth.
         //Solving the set of equations gives us: arrWidth = (500/(6*arrLen -1))
-        this.#array.style.gap = `${(100)/(6*arr.length -1)}%`
+        this.#array.style.gap = `${(95)/(6*arr.length -1)}%`
         
         //Iteration for creating the bars that are div elements
         for (let i=0; i<arr.length; i++){
@@ -43,7 +43,7 @@ class ArrayBars {
             bar.setAttribute('data-value', arr[i]);
             
             //Width from the formula above
-            bar.style.width = `${(500)/(6*arr.length -1)}%`;
+            bar.style.width = `${(5*95)/(6*arr.length -1)}%`;
             //We want the parent to have a fixed height of 60vh
             //For safety reason, we keep a gap of 10vh and,
             //Scale the height of the bars to 0-50vh
