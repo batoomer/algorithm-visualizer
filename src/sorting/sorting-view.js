@@ -1,33 +1,42 @@
-import ArrayBars from './array-bars';
 import './sorting-view.css';
+import ArrayBars from './array-bars';
+import {createNewArray} from './utils/array-utils';
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
-};
 
-function createNewArray(lenght){
-    let array= new Array(lenght);
-    for(let i=0; i<lenght; i++){
-        array[i] = getRandomInt(10, 1000);
-    };
-    return array;
-};
-
+/**
+ * Represents the sorting page.
+ * All elements are nested inside a main element
+ */
 class SortingView{
+    //the html for the page
     #view;
+    //controll variable for the array length
     #arraySize = 100;
+    //controll variable for the sort algorithm 
     #sortingAlgorithm = 'selection-sort';
-    #delay = 10;
+    //controll variable for the delay
+    #delay = 1;
+    //variable that holds the array
     #array;
+    //the html for the array visualization
     #arrayBars;
 
     constructor(){
+        //create the view
         this.#render();
+        //add the event listeners
         this.#addViewListeners();
+        //create the array visualization
         this.#createArrayBars();
-
     };
 
+    /**
+     * Creates the view:
+     * - Title
+     * - array visual container
+     * - controlls
+     * - settings display
+     */
     #render(){
         this.#view = document.createElement('main');
         this.#view.classList.add('sorting-view');
@@ -69,12 +78,12 @@ class SortingView{
             <div>
                 <label for="sorting-view--controller--delay">Delay</label>
                 <select id="sorting-view--controller--delay">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="1">0</option>
+                    <option value="10">1</option>
+                    <option value="20">2</option>
+                    <option value="30">3</option>
+                    <option value="40">4</option>
+                    <option value="50">5</option>
                 </select>
             </div>
 
@@ -98,20 +107,36 @@ class SortingView{
         `;
     };
 
+    /**
+     * creates a new random array and updates the array visual
+     */
     #createArrayBars(){
         this.#array = createNewArray(this.#arraySize);
         this.#updateArrayBars()
     };
 
+    /**
+     * Creates a new array visual and replaces it with the old one on the view
+     */
     #updateArrayBars(){
         this.#arrayBars = new ArrayBars(this.#array, this.#sortingAlgorithm, this.#delay);
         this.#view.querySelector('.array-bars').replaceWith(this.#arrayBars.getArrayBars());
     };
 
+    /**
+     * Event Listener for the array size slider. Updates the text of the array size slider that is
+     * displayed in a small elemenet.
+     * @param {Event} event 
+     */
     #updateArraySizeInputText(event){
         this.#view.querySelector('#sorting-view--controller--array-size + small').textContent=event.target.value;
     };
 
+    /**
+     * Event Listener for the array size slider. Updates the text of the array size slider and the settings
+     * display. Sets the array size property to the new selected value and creates a new array visual.
+     * @param {Event} event 
+     */
     #updateArraySize(event){
         this.#updateArraySizeInputText(event);
         this.#view.querySelector('.sorting-view--settings-info--size > span').textContent = event.target.value;
@@ -119,16 +144,32 @@ class SortingView{
         this.#createArrayBars();
     };
 
+
+    /**
+     * Event Listener for the sorting algorithm selection. Updates the settings display
+     * and sets the sorting algorithm property to the selected new value.
+     * @param {Event} event 
+     */
     #updateSortAlgorithm(event){
         this.#view.querySelector('.sorting-view--settings-info--algorithm > span').textContent = event.target.value;
         this.#sortingAlgorithm = event.target.value;
     };
 
+    /**
+     * Event Listener for the delay selection. Updates the settings display text and
+     * sets the delay property to the new selected value.
+     * @param {Event} event 
+     */
     #updateSortDelay(event){
         this.#view.querySelector('.sorting-view--settings-info--delay > span').textContent = event.target.value;
         this.#delay = event.target.value;
     };
 
+    /**
+     * Event Listener for the Start Button. Disables all the controllers (we do not want to make changes
+     * while the algorithm is runnin). Starts the sortings algorithm. When it finishes re enables the controllers.
+     * @param {Event} event 
+     */
     async #startSort(event){
         let arrayNewButton= this.#view.querySelector('#sorting-view--controller--new-array');
         let arraySizeInput = this.#view.querySelector('#sorting-view--controller--array-size');
@@ -148,6 +189,9 @@ class SortingView{
         arraySortDelay.disabled = false;
     };
 
+    /**
+     * Adds the event listeners for the elements of the view
+     */
     #addViewListeners(){
         let arrayNewButton= this.#view.querySelector('#sorting-view--controller--new-array');
         arrayNewButton.addEventListener('click', this.#createArrayBars.bind(this));
@@ -166,6 +210,10 @@ class SortingView{
         arrayStartButton.addEventListener('click', this.#startSort.bind(this));
     };
 
+    /**
+     * Removes all event listeners that were added to the view. Finally removes the
+     * view from the DOM.
+     */
     deleteView(){
         let arrayNewButton= this.#view.querySelector('#sorting-view--controller--new-array');
         arrayNewButton.removeEventListener('click', this.#createArrayBars);
@@ -180,13 +228,19 @@ class SortingView{
         let arraySortDelay = this.#view.querySelector('#sorting-view--controller--delay');
         arraySortDelay.removeEventListener('change', this.#updateSortDelay.bind(this));
 
+        let arrayStartButton = this.#view.querySelector('#sorting-view--controller--start');
+        arrayStartButton.removeEventListener('click', this.#startSort.bind(this));
+
         this.#view.remove();
     };
 
+    /**
+     * Returns the view property of the class which represents a dom node.
+     * @returns the view
+     */
     getView(){
         return this.#view;
     };
 };
 
-export default SortingView
-
+export default SortingView;

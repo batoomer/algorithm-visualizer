@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.0.4] - 2022-07-17
+### Added
+- merge sort
+### Changed
+- delay values
+- swap function
+- updateBar method of ArrayBars
+- sorting algorithms to support the refractored code
+
 ## [0.0.3] - 2022-07-16
 ### Added
 - quick sort

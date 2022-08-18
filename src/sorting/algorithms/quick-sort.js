@@ -1,6 +1,9 @@
+import { swap } from "../utils/array-utils";
+import sleep from "../utils/sleep";
 
 
-async function partition(arr, left, right, swap, paint, delay){
+
+async function partition(arr, left, right, updateBar, paint, delay){
     let pivot = right;
     let i = (left -1);
     paint(left, 'green');
@@ -8,13 +11,17 @@ async function partition(arr, left, right, swap, paint, delay){
     for (let j = left; j<=right; j++){
         if (arr[j]<arr[pivot]){
             i++;
-            await swap(arr, i, j, delay);
+            swap(arr, i, j, delay);
+            await updateBar(arr, i, delay);
+            await updateBar(arr, j, delay);
             paint(left, 'green');
             paint(right, 'green');
         };
     };
 
-    await swap(arr, i+1, right);
+    swap(arr, i+1, right);
+    await updateBar(arr, i+1, delay);
+    await updateBar(arr, right, delay);
     paint(left, 'aqua');
     paint(right, 'aqua');
     return (i+1);
@@ -22,13 +29,11 @@ async function partition(arr, left, right, swap, paint, delay){
 
 
 
-async function quickSort(arr, left, right, swap, paint, delay){
+async function quickSort(arr, left, right, updateBar, paint, delay){
     if(left< right){
-        let pivot = await partition(arr, left, right, swap, paint, delay);
-        Promise.all([
-            await quickSort(arr, left, pivot-1, swap, paint, delay),
-            await quickSort(arr, pivot+1, right, swap, paint, delay)
-        ]);
+        let pivot = await partition(arr, left, right, updateBar, paint, delay);
+        await quickSort(arr, left, pivot-1, updateBar, paint, delay);
+        await quickSort(arr, pivot+1, right, updateBar, paint, delay);
     };
 };
 
