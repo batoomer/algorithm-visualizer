@@ -1,7 +1,7 @@
 .sorting-view{
     flex: 1;
     padding: 1rem;
-    
+    min-height: 100vh;
     background-color: var(--black);
     color: var(--white);
     display: flex;
@@ -19,7 +19,7 @@
 .array-bars{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     background-color: var(--black);
     padding: 2rem;
     border-radius: 4rem;

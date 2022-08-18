@@ -31,8 +31,8 @@ body{
 
 /* START FOOTER STYLE */
 footer {
-    background-color: var(--black);
-    color: var(--white-main);
+    background-color:black;
+    color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
